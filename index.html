@@ -1,0 +1,840 @@
+<div class="db-prompt-wrapper" dir="rtl">
+    <style>
+        .db-prompt-wrapper {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            padding: 20px !important;
+            box-sizing: border-box !important;
+            width: 100% !important;
+            background: transparent !important;
+        }
+        
+        .db-prompt-wrapper * {
+            box-sizing: border-box !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            line-height: normal !important;
+            letter-spacing: normal !important;
+        }
+
+        .db-container {
+            background: #ffffff !important;
+            padding: 30px !important;
+            border-radius: 15px !important;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important;
+            width: 100% !important;
+            max-width: 900px !important;
+            border: 1px solid #e0e0e0 !important;
+        }
+
+        .db-container h1 {
+            text-align: center !important;
+            color: #2c3e50 !important;
+            margin-bottom: 25px !important;
+            font-size: 24px !important;
+            font-weight: bold !important;
+        }
+
+        .db-section {
+            margin-bottom: 25px !important;
+            background: #f8f9fa !important;
+            padding: 20px !important;
+            border-radius: 10px !important;
+            border: 1px solid #e9ecef !important;
+            text-align: right !important;
+        }
+
+        .db-title {
+            display: block !important;
+            margin-bottom: 12px !important;
+            font-weight: bold !important;
+            color: #34495e !important;
+            font-size: 16px !important;
+        }
+        
+        .db-title-trend {
+            color: #e74c3c !important;
+        }
+
+        .db-container textarea {
+            width: 100% !important;
+            padding: 15px !important;
+            border-radius: 8px !important;
+            border: 1px solid #ced4da !important;
+            font-size: 15px !important;
+            resize: vertical !important;
+            min-height: 100px !important;
+            text-align: left !important;
+            direction: ltr !important;
+            background-color: #ffffff !important;
+            color: #333 !important;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05) !important;
+        }
+
+        .db-container textarea[readonly] {
+            background-color: #eef2f5 !important;
+            color: #2c3e50 !important;
+            font-weight: 500 !important;
+            border-color: #bdc3c7 !important;
+        }
+
+        .db-checkbox-group {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            gap: 15px !important;
+        }
+
+        .db-checkbox-item {
+            display: flex !important;
+            align-items: center !important;
+            cursor: pointer !important;
+            font-size: 15px !important;
+            background: #ffffff !important;
+            padding: 10px 15px !important;
+            border-radius: 8px !important;
+            border: 1px solid #dee2e6 !important;
+            color: #495057 !important;
+            flex: 1 1 calc(50% - 15px) !important;
+            transition: background 0.2s !important;
+        }
+        
+        .db-checkbox-item:hover {
+            background: #f1f3f5 !important;
+        }
+
+        .db-checkbox-item input {
+            margin-left: 10px !important;
+            width: 18px !important;
+            height: 18px !important;
+            cursor: pointer !important;
+            accent-color: #3498db !important;
+        }
+
+        .db-preset-group {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
+            gap: 12px !important;
+            max-height: 420px !important; 
+            overflow-y: auto !important;
+            padding-left: 5px !important;
+        }
+
+        .db-preset-group::-webkit-scrollbar {
+            width: 6px;
+        }
+        .db-preset-group::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+            border-radius: 10px;
+        }
+        .db-preset-group::-webkit-scrollbar-thumb {
+            background: #c1c1c1; 
+            border-radius: 10px;
+        }
+
+        .db-btn-preset {
+            display: flex !important;
+            align-items: center !important;
+            gap: 10px !important;
+            background-color: #ffffff !important;
+            border: 1px solid #ced4da !important;
+            padding: 8px !important;
+            border-radius: 10px !important;
+            cursor: pointer !important;
+            text-align: right !important;
+            transition: all 0.2s !important;
+            direction: rtl !important;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02) !important;
+            width: 100% !important;
+        }
+
+        .db-btn-preset img {
+            width: 45px !important;
+            height: 45px !important;
+            border-radius: 8px !important;
+            object-fit: cover !important;
+            flex-shrink: 0 !important;
+            border: 1px solid #e9ecef !important;
+            margin-right: 0 !important;
+            margin-left: 10px !important;
+            transition: transform 0.2s !important;
+        }
+
+        .db-btn-preset img:hover {
+            transform: scale(1.05) !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
+        }
+
+        .db-btn-preset-content {
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            line-height: 1.3 !important;
+        }
+
+        .db-preset-main-title {
+            color: #2c3e50 !important;
+            font-size: 14px !important;
+            font-weight: bold !important;
+        }
+
+        .db-preset-subtitle {
+            color: #7f8c8d !important;
+            font-size: 11px !important;
+            font-weight: normal !important;
+            margin-top: 2px !important;
+        }
+
+        .db-btn-preset:hover {
+            border-color: #3498db !important;
+            background-color: #f1f8ff !important;
+        }
+
+        .db-btn-preset.active {
+            background-color: #3498db !important;
+            border-color: #2980b9 !important;
+        }
+
+        .db-btn-preset.active .db-preset-main-title,
+        .db-btn-preset.active .db-preset-subtitle {
+            color: white !important;
+        }
+        
+        .db-trend-btn.active {
+            background-color: #e74c3c !important;
+            border-color: #c0392b !important;
+        }
+
+        .db-trend-btn.active .db-preset-main-title,
+        .db-trend-btn.active .db-preset-subtitle {
+            color: white !important;
+        }
+
+        .db-btn-back {
+            justify-content: center !important;
+            background-color: #f8f9fa !important;
+        }
+        
+        .db-btn-back .db-preset-main-title {
+            font-size: 14px !important;
+            text-align: center !important;
+        }
+
+        .db-btn-group {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 15px !important;
+            margin-top: 25px !important;
+        }
+
+        .db-btn {
+            width: 100% !important;
+            padding: 16px !important;
+            border: none !important;
+            border-radius: 8px !important;
+            cursor: pointer !important;
+            color: #ffffff !important;
+            font-weight: bold !important;
+            font-size: 16px !important;
+            text-decoration: none !important;
+            text-align: center !important;
+            transition: all 0.3s ease !important;
+            display: block !important;
+        }
+
+        .db-btn:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15) !important;
+        }
+
+        .db-btn-generate { background-color: #6f42c1 !important; }
+        .db-btn-gemini { background-color: #1A73E8 !important; }
+        .db-btn-chatgpt { background-color: #10A37F !important; }
+
+        /* تایبەتمەندییا مەزنکرنا وێنان (Modal) */
+        .db-modal {
+            display: none !important; 
+            position: fixed !important;
+            z-index: 99999 !important;
+            left: 0 !important;
+            top: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            background-color: rgba(0,0,0,0.85) !important;
+            justify-content: center !important;
+            align-items: center !important;
+            backdrop-filter: blur(5px) !important;
+            -webkit-backdrop-filter: blur(5px) !important;
+        }
+        .db-modal.show {
+            display: flex !important;
+        }
+        .db-modal-content {
+            max-width: 90% !important;
+            max-height: 90% !important;
+            border-radius: 12px !important;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5) !important;
+            object-fit: contain !important;
+            border: 2px solid #ffffff !important;
+        }
+        .db-modal-close {
+            position: absolute !important;
+            top: 20px !important;
+            right: 30px !important;
+            color: #ffffff !important;
+            font-size: 40px !important;
+            font-weight: bold !important;
+            cursor: pointer !important;
+            line-height: 1 !important;
+            transition: color 0.2s !important;
+        }
+        .db-modal-close:hover {
+            color: #e74c3c !important;
+        }
+
+        @media (min-width: 600px) {
+            .db-btn-group {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+            }
+            .db-btn-full {
+                grid-column: span 2 !important;
+            }
+            .db-checkbox-item {
+                flex: none !important;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .db-checkbox-item {
+                flex: 1 1 100% !important;
+            }
+            .db-preset-group {
+                grid-template-columns: 1fr !important;
+            }
+        }
+    </style>
+
+    <div class="db-container">
+        <h1>✨ ئامرازێ زیرەک یێ دروستكرنا پرومپتان</h1>
+        
+        <!-- بەشی ترێند -->
+        <div class="db-section">
+            <label class="db-title db-title-trend">🔥 ترێند (پرۆمپتێن تایبەت کو دگەل چ بەشێن دی تێکەل نابن):</label>
+            <div class="db-preset-group">
+                <!-- ترێند 1 --> 
+                <button type="button" class="db-btn-preset db-trend-btn" data-prompt-key="trend_1"> 
+                    <img src="https://cdn.shopify.com/s/files/1/0844/3517/3588/files/photo_2026-09-29_11-58-25.jpg?v=1790704711" alt="Balaclava" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">ترێندێ دەمامکێ (Balaclava)</span> <span class="db-preset-subtitle">دوو کەس ب دەمامکا ڕەشڤە</span>
+                    </div>
+                </button>
+                <!-- ترێند 2 --> 
+                <button type="button" class="db-btn-preset db-trend-btn" data-prompt-key="trend_2"> 
+                    <img src="https://cdn.shopify.com/s/files/1/0844/3517/3588/files/photo_2026-09-28_21-40-53.jpg?v=1790705196" alt="Cinematic Portrait" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">ترێندێ سینەمایی یێ گەنجی</span> <span class="db-preset-subtitle">پۆرترێتێ 8K ب ڕووناهی و سێبەرێ</span>
+                    </div>
+                </button>
+                <!-- ترێند 3 --> 
+                <button type="button" class="db-btn-preset db-trend-btn" data-prompt-key="trend_3"> 
+                    <img src="https://cdn.shopify.com/s/files/1/0844/3517/3588/files/photo_2026-09-29_08-34-52.jpg?v=1790707925" alt="B&W Car Cinematic" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">ترێندێ ڕەش و سپی</span> <span class="db-preset-subtitle">د ناڤ ترۆمبێلێ دا ب شەڤ</span>
+                    </div>
+                </button>
+                <!-- ترێند 4 --> 
+                <button type="button" class="db-btn-preset db-trend-btn" data-prompt-key="trend_4"> 
+                    <img src="https://cdn.shopify.com/s/files/1/0844/3517/3588/files/photo_2026-09-28_05-47-01.jpg?v=1790708984" alt="Romantic Couple" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">ترێندێ ئەڤینداران (ڕۆمانسی)</span> <span class="db-preset-subtitle">ڕەش و سپی بۆ دوو کەسان</span>
+                    </div>
+                </button>
+                <!-- ترێند 5 --> 
+                <button type="button" class="db-btn-preset db-trend-btn" data-prompt-key="trend_5"> 
+                    <img src="https://cdn.shopify.com/s/files/1/0844/3517/3588/files/Screenshot_2026-10-01_030537.jpg?v=1790813257" alt="Mysterious Eyes" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">ترێندێ چاڤێن نهێنی</span> <span class="db-preset-subtitle">بتنێ چاڤ دیارن ب ڕەش و سپی</span>
+                    </div>
+                </button>
+                <!-- ترێند 6 --> 
+                <button type="button" class="db-btn-preset db-trend-btn" data-prompt-key="trend_6"> 
+                    <img src="https://cdn.shopify.com/s/files/1/0844/3517/3588/files/Screenshot_2026-10-01_032110.jpg?v=1790814087" alt="Romantic Mirror Selfie" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">ترێندێ ئەڤینا ناڤ ترۆمبێلێ</span> <span class="db-preset-subtitle">سێلفیێ کەپلان ب ڕەش و سپی</span>
+                    </div>
+                </button>
+                <!-- ترێند 7 --> 
+                <button type="button" class="db-btn-preset db-trend-btn" data-prompt-key="trend_7"> 
+                    <img src="https://cdn.shopify.com/s/files/1/0844/3517/3588/files/Screenshot_2026-10-01_034640.jpg?v=1790815635" alt="Cinematic Studio Portrait" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">ترێندێ پۆرترێتێ ستۆدیۆیێ</span> <span class="db-preset-subtitle">ب ڕووناهییا سینەمایی و پاشخانا ڕەش</span>
+                    </div>
+                </button>
+                <!-- ترێند 8 --> 
+                <button type="button" class="db-btn-preset db-trend-btn" data-prompt-key="trend_8"> 
+                    <img src="https://cdn.shopify.com/s/files/1/0844/3517/3588/files/Screenshot_2026-10-01_034929.jpg?v=1790815796" alt="Romantic Collage" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">ترێندێ کۆلاژا ئەڤینداران</span> <span class="db-preset-subtitle">کۆلاژا رۆمانسی یا دوو کەسان</span>
+                    </div>
+                </button>
+                <!-- ترێند 9 --> 
+                <button type="button" class="db-btn-preset db-trend-btn" data-prompt-key="trend_9"> 
+                    <img src="https://cdn.shopify.com/s/files/1/0844/3517/3588/files/Screenshot_2026-10-01_035301.jpg?v=1790815995" alt="B&W Couple Portrait" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">پۆرترێتێ ڕەش و سپی</span> <span class="db-preset-subtitle">زەلام ل پێش و ژن ل پشتڤە</span>
+                    </div>
+                </button>
+                <!-- ترێند 10 --> 
+                <button type="button" class="db-btn-preset db-trend-btn" data-prompt-key="trend_10"> 
+                    <img src="https://cdn.shopify.com/s/files/1/0844/3517/3588/files/Screenshot_2026-10-01_035702.jpg?v=1790816234" alt="1980s Vintage" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">ترێندێ سالێن هەشتیان (1980)</span> <span class="db-preset-subtitle">وێنەیێ کەڤنار یێ ئەڤینداران</span>
+                    </div>
+                </button>
+                <!-- ترێند 11 --> 
+                <button type="button" class="db-btn-preset db-trend-btn" data-prompt-key="trend_11"> 
+                    <img src="https://cdn.shopify.com/s/files/1/0844/3517/3588/files/Screenshot_2026-10-01_040016.jpg?v=1790816430" alt="Macro Half Face" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">ترێندێ نیڤا دێمی</span> <span class="db-preset-subtitle">وێنەیێ گەلەک نێزیک یێ دوو دێمان</span>
+                    </div>
+                </button>
+                <!-- ترێند 12 --> 
+                <button type="button" class="db-btn-preset db-trend-btn" data-prompt-key="trend_12"> 
+                    <img src="https://cdn.shopify.com/s/files/1/0844/3517/3588/files/Dreamy_Double-Exposure_Child_Portrait.jpg?v=1791108733" alt="Double Exposure Portrait" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">ترێندێ دوو دیمەنی</span> <span class="db-preset-subtitle">پۆرترێتێ خەیاڵی یێ تێکەڵکری</span>
+                    </div>
+                </button>
+                <!-- ترێند 13 --> 
+                <button type="button" class="db-btn-preset db-trend-btn" data-prompt-key="trend_13"> 
+                    <img src="https://cdn.shopify.com/s/files/1/0844/3517/3588/files/795946634_18622254103002088_193713332945439526_n.jpg?v=1791109790" alt="Pixar Character" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">ترێندێ کارتۆنی (Pixar)</span> <span class="db-preset-subtitle">کەسێ ڕاستەقینە دگەل کۆپییا کارتۆنی</span>
+                    </div>
+                </button>
+                <!-- ترێند 14 --> 
+                <button type="button" class="db-btn-preset db-trend-btn" data-prompt-key="trend_14"> 
+                    <img src="https://cdn.shopify.com/s/files/1/0844/3517/3588/files/806072582_18618450844002088_5885403401201623336_n.jpg?v=1791136820" alt="Pop Art" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">ترێندێ پۆپ ئارت (Pop-Art)</span> <span class="db-preset-subtitle">وێنەیێ دیجیتاڵی یێ سەرنجراکێش</span>
+                    </div>
+                </button>
+                <!-- ترێند 15 --> 
+                <button type="button" class="db-btn-preset db-trend-btn" data-prompt-key="trend_15"> 
+                    <img src="https://cdn.shopify.com/s/files/1/0844/3517/3588/files/774508931_18608047942002088_8192384245058783388_n.jpg?v=1791138221" alt="3D Pixar Disney" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">ترێندێ 3D (Pixar/Disney)</span> <span class="db-preset-subtitle">کەسێن ڕاستەقینە ب شێوەیێ 3D</span>
+                    </div>
+                </button>
+                <!-- ترێند 16 --> 
+                <button type="button" class="db-btn-preset db-trend-btn" data-prompt-key="trend_16"> 
+                    <img src="https://cdn.shopify.com/s/files/1/0844/3517/3588/files/Gemini_Generated_Image_9i3tba9i3tba9i3t.jpg?v=1791142911" alt="Romantic Beach" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">ترێندێ کەنارێ دەریایێ</span> <span class="db-preset-subtitle">ڕۆمانسی ب جلێن سپی ڤە</span>
+                    </div>
+                </button>
+                <!-- ترێند 17 --> 
+                <button type="button" class="db-btn-preset db-trend-btn" data-prompt-key="trend_17"> 
+                    <img src="https://cdn.shopify.com/s/files/1/0844/3517/3588/files/807698917_17905715253558523_8744317840672681205_n.jpg?v=1791144327" alt="B&W Double Exposure" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">ترێندێ دوو دیمەنیێ ڕەش و سپی</span> <span class="db-preset-subtitle">پۆرترێتێ خەیاڵی یێ تێکەڵکری</span>
+                    </div>
+                </button>
+                <!-- ترێند 18 --> 
+                <button type="button" class="db-btn-preset db-trend-btn" data-prompt-key="trend_18"> 
+                    <img src="https://cdn.shopify.com/s/files/1/0844/3517/3588/files/808322209_17905715280558523_5788781547425737211_n.jpg?v=1791146427" alt="Hand-Drawn Illustration" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">ترێندێ وێنەکێشانا دەستی</span> <span class="db-preset-subtitle">وێنەیێ هونەری ب ڕەنگێن ئاڤی</span>
+                    </div>
+                </button>
+                <!-- ترێند 19 --> 
+                <button type="button" class="db-btn-preset db-trend-btn" data-prompt-key="trend_19"> 
+                    <img src="https://cdn.shopify.com/s/files/1/0844/3517/3588/files/807727243_17905715223558523_2918996575572099864_n.jpg?v=1791148092" alt="Joyful Scene Trend" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">ترێندێ دیمەنێ دڵخۆشی</span> <span class="db-preset-subtitle">چێکرنا شێوەیێ دڵ ب دەستان</span>
+                    </div>
+                </button>
+                <!-- ترێند 20 --> 
+                <button type="button" class="db-btn-preset db-trend-btn" data-prompt-key="trend_20"> 
+                    <img src="https://cdn.shopify.com/s/files/1/0844/3517/3588/files/Gemini_Generated_Image_18ludm18ludm18lu.jpg?v=1791149759" alt="Mixed Media Chase" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">ترێندێ ڕاکردنا کارتۆنی</span> <span class="db-preset-subtitle">کەسێ ڕاستەقینە ب دویڤ کۆپییا 3D ڤە</span>
+                    </div>
+                </button>
+                <!-- ترێند 21 -->
+                <button type="button" class="db-btn-preset db-trend-btn" data-prompt-key="trend_21">
+                    <img src="https://cdn.shopify.com/s/files/1/0844/3517/3588/files/826185277_18629529352021877_7290367910241709521_n.jpg?v=1791151578" alt="Storybook Comic Adventure" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">ترێندێ سەرکێشییا پەرتووکا کۆمیک</span>
+                        <span class="db-preset-subtitle">دەرکەفتن ژ جیهانا نەخشاندن</span>
+                    </div>
+                </button>
+                <!-- ترێند 22 -->
+                <button type="button" class="db-btn-preset db-trend-btn" data-prompt-key="trend_22">
+                    <img src="https://cdn.shopify.com/s/files/1/0844/3517/3588/files/834249284_18632087254021877_6478547357534464755_n.jpg?v=1791150928" alt="Portrait Collage" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">ترێندێ کۆلاژا پۆرترێتان</span>
+                        <span class="db-preset-subtitle">پێنج وێنەیێن جودا د ئێک چارچۆڤەی دا</span>
+                    </div>
+                </button>
+                <!-- ترێند 23 -->
+                <button type="button" class="db-btn-preset db-trend-btn" data-prompt-key="trend_23">
+                    <img src="https://cdn.shopify.com/s/files/1/0844/3517/3588/files/834249284_18632087254021877_6478547357534464755_n.jpg?v=1791150928" alt="Spring Poppy Field Portrait" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">ترێندێ کێلگەها گولان</span>
+                        <span class="db-preset-subtitle">پۆرترێتێ بهارێ د ناڤ گولێن سوور دا</span>
+                    </div>
+                </button>
+                <!-- ترێند 24 -->
+                <button type="button" class="db-btn-preset db-trend-btn" data-prompt-key="trend_24">
+                    <img src="https://i.postimg.cc/wBbGBdmt/20261015-175136-no-name.jpg" alt="Trendy Low-Angle Fashion Manga" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">ترێندێ فاشن و مانگا</span>
+                        <span class="db-preset-subtitle">وێنەیێ ستايل ب کێشانا مانگا ل پشتڤە</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- بەشی ئێکێ: زێدەکرن -->
+        <div class="db-section">
+            <label class="db-title">به‌شێ ئێكێ - تايبه‌تمه‌نديێن زێده‌كرى هه‌لبژێره‌ (بتنێ بۆ بەشێ دووێ کار دکەت):</label>
+            <div class="db-checkbox-group">
+                <label class="db-checkbox-item"> 
+                    <input type="checkbox" id="dbAnim" value=" Convert the image to a highly detailed anime animation style."> ئه‌نيمه‌يشن 
+                </label> 
+                <label class="db-checkbox-item"> 
+                    <input type="checkbox" id="dbRes8k" value=" 8K resolution, ultra-detailed, masterpiece, highly realistic." checked> بكه‌ته‌ 8K 
+                </label> 
+                <label class="db-checkbox-item"> 
+                    <input type="checkbox" id="dbBw" value=" Black and white photography, grayscale, monochrome style."> ره‌ش و سپي 
+                </label> 
+                <label class="db-checkbox-item"> 
+                    <input type="checkbox" id="dbColor" value=" Enhanced vivid colors, beautiful color grading, cinematic lighting."> گوهورينا ره‌‌نگا 
+                </label> 
+                <label class="db-checkbox-item"> 
+                    <input type="checkbox" id="dbNatureCheckbox" value=" Change the background to a beautiful and breathtaking natural landscape, making sure the lighting matches perfectly."> گوهۆڕینا سروشتی 
+                </label>
+                <label class="db-checkbox-item">
+                    <input type="checkbox" id="dbSmooth" value=" Enhance this photo professionally while keeping the person exactly the same (same face, features, and identity). Skin retouching: - Smooth and clean the skin thoroughly: remove blemishes, spots, acne, redness, dark circles, and uneven skin tone - Make the skin look soft, clear, and glowing, with an even tone - Keep a natural look with subtle skin texture, not a plastic or fake look. General: - Increase sharpness and clarity, reduce noise - Correct lighting, contrast, and colors - Clean studio-quality look, high resolution (4K) - Do not change the face shape, eyes, hair, clothes, or background elements"> سافیکرن
+                </label>
+            </div>
+        </div>
+
+        <!-- بەشی دووێ: ستايل -->
+        <div class="db-section">
+            <label class="db-title">ستايل - پرۆمپتێن ئامادەکری یێن جودا:</label>
+            <div class="db-preset-group">
+                <button type="button" class="db-btn-preset db-btn-back active" data-prompt-key="base">
+                    <div class="db-btn-preset-content"><span class="db-preset-main-title">پرۆمپتێ سەرەکی ↩</span></div>
+                </button>
+                <button type="button" class="db-btn-preset" data-prompt-key="preset_1"> 
+                    <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=100&fit=crop" alt="Cinematic" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">سینەمایی</span> <span class="db-preset-subtitle">رۆناهیا وەک فلیمان</span>
+                    </div>
+                </button>
+                <button type="button" class="db-btn-preset" data-prompt-key="preset_2"> 
+                    <img src="https://images.unsplash.com/photo-1472806426350-603610d85659?w=100&fit=crop" alt="Golden Hour" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">دەمێ زێڕین</span> <span class="db-preset-subtitle">رۆناهیا گەرم یا رۆژئاڤابوونێ</span>
+                    </div>
+                </button>
+                <button type="button" class="db-btn-preset" data-prompt-key="preset_3"> 
+                    <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=100&fit=crop" alt="DSLR Look" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">کامیرەیا DSLR</span> <span class="db-preset-subtitle">کووریا سروشتی یا کامیرەیێ</span>
+                    </div>
+                </button>
+                <button type="button" class="db-btn-preset" data-prompt-key="preset_4"> 
+                    <img src="https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=100&fit=crop" alt="Raindrops" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">دلۆپێن بارانێ</span> <span class="db-preset-subtitle">کەشوهەوایێ بارانێ</span>
+                    </div>
+                </button>
+                <button type="button" class="db-btn-preset" data-prompt-key="preset_5"> 
+                    <img src="https://images.unsplash.com/photo-1490730141103-6cac27aaab94?w=100&fit=crop" alt="Dreamy" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">خەیاڵی</span> <span class="db-preset-subtitle">کەشوهەوایێ سیحری و نەرم</span>
+                    </div>
+                </button>
+                <button type="button" class="db-btn-preset" data-prompt-key="preset_6"> 
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&fit=crop" alt="Portrait Pro" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">پۆرترێتا پرۆفێشناڵ</span> <span class="db-preset-subtitle">کوالیتییا ستۆدیۆیێ</span>
+                    </div>
+                </button>
+                <button type="button" class="db-btn-preset" data-prompt-key="preset_7"> 
+                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=100&fit=crop" alt="Background" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">پاشخان</span> <span class="db-preset-subtitle">گوهۆڕینا جهی و پاشخانی</span>
+                    </div>
+                </button>
+                <button type="button" class="db-btn-preset" data-prompt-key="preset_8"> 
+                    <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=100&fit=crop" alt="Colorgrade" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">رەنگێن سینەمایی</span> <span class="db-preset-subtitle">تۆنێن سینەمایی یێن زەنگین</span>
+                    </div>
+                </button>
+                <button type="button" class="db-btn-preset" data-prompt-key="preset_9"> 
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&fit=crop" alt="Real" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">راستەقینە</span> <span class="db-preset-subtitle">پێستێ سروشتی یێ بێ دەستکاری</span>
+                    </div>
+                </button>
+                <button type="button" class="db-btn-preset" data-prompt-key="preset_10"> 
+                    <img src="https://images.unsplash.com/photo-1542204165-65bf26472b9b?w=100&fit=crop" alt="Sharpness" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">تیژی و روونی</span> <span class="db-preset-subtitle">زێدەکرنا هویرکاریان</span>
+                    </div>
+                </button>
+                <button type="button" class="db-btn-preset" data-prompt-key="preset_11"> 
+                    <img src="https://images.unsplash.com/photo-1494859802809-d069c3b71a8a?w=100&fit=crop" alt="Bokeh" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">بۆکێ (تەمومژی)</span> <span class="db-preset-subtitle">بازنەیێن رۆناهیێ یێن لۆل</span>
+                    </div>
+                </button>
+                <button type="button" class="db-btn-preset" data-prompt-key="preset_12"> 
+                    <img src="https://images.unsplash.com/photo-1495121553079-4c61bcce1894?w=100&fit=crop" alt="Vintage" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">کەڤنار (ڤینتێج)</span> <span class="db-preset-subtitle">شێوەیێ فلیمێن کەڤن</span>
+                    </div>
+                </button>
+                <button type="button" class="db-btn-preset" data-prompt-key="preset_13"> 
+                    <img src="https://images.unsplash.com/photo-1512389142860-9c449e58a543?w=100&fit=crop" alt="Festive" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">ئاهەنگ</span> <span class="db-preset-subtitle">رۆناهیێن گەرم یێن جەژنێ</span>
+                    </div>
+                </button>
+                <button type="button" class="db-btn-preset" data-prompt-key="preset_14"> 
+                    <img src="https://images.unsplash.com/photo-1505322022379-7c3353ee6291?w=100&fit=crop" alt="Nightglow" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">رۆناهیا شەڤێ</span> <span class="db-preset-subtitle">رۆناهیا شەڤێ یا سەرنجراکێش</span>
+                    </div>
+                </button>
+                <button type="button" class="db-btn-preset" data-prompt-key="preset_15"> 
+                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=100&fit=crop" alt="Nature" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">سروشت</span> <span class="db-preset-subtitle">دیمەنێ کەسکاتیێ یێ دەرڤە</span>
+                    </div>
+                </button>
+                <button type="button" class="db-btn-preset" data-prompt-key="preset_16"> 
+                    <img src="https://images.unsplash.com/photo-1611928482473-7b27d24eab80?w=100&fit=crop" alt="Cloudsoft" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">ئەورێن نەرم</span> <span class="db-preset-subtitle">ئەسمانێ خەیاڵی یێ نەرم</span>
+                    </div>
+                </button>
+                <button type="button" class="db-btn-preset" data-prompt-key="preset_17"> 
+                    <img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=100&fit=crop" alt="Remove Clutter" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">لادانا تشتان</span> <span class="db-preset-subtitle">پاقژکرنا پاشخانی</span>
+                    </div>
+                </button>
+                <button type="button" class="db-btn-preset" data-prompt-key="preset_18"> 
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=100&fit=crop" alt="Outfit Swap" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">گوهۆڕینا جلان</span> <span class="db-preset-subtitle">گوهۆڕینا ستایلێ جلان</span>
+                    </div>
+                </button>
+                <button type="button" class="db-btn-preset" data-prompt-key="preset_19"> 
+                    <img src="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?w=100&fit=crop" alt="4K Detail" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">کوالیتییا 4K</span> <span class="db-preset-subtitle">هویرکاریێن گەلەک زێدە</span>
+                    </div>
+                </button>
+                <button type="button" class="db-btn-preset" data-prompt-key="preset_20"> 
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&fit=crop" alt="Keep Face" title="کلیک بکە بۆ مەزنکرنێ">
+                    <div class="db-btn-preset-content">
+                        <span class="db-preset-main-title">پاراستنا دێمی</span> <span class="db-preset-subtitle">پاراستنا شێوەیێ کەسی</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- ئهنجام -->
+        <div class="db-section">
+            <label class="db-title">پرومپتێ دوماهيێ (ئاماده‌يه‌‌ بو ب كارئينانێ):</label> 
+            <textarea id="dbFinalPrompt" readonly></textarea>
+        </div>
+
+        <!-- دوگمە و لینک -->
+        <div class="db-btn-group">
+            <button type="button" class="db-btn db-btn-generate db-btn-full" id="dbCopyBtn">١. پرومپتێ دوماهیێ كۆپي بكه‌ بۆ Gemini</button> 
+            <a href="https://gemini.google.com/" class="db-btn db-btn-gemini" target="_blank">٢. بچه‌ دناف Gemini دا</a> 
+            <a href="https://chatgpt.com/" class="db-btn db-btn-chatgpt" target="_blank">٣. بچه‌ دناف ChatGPT دا</a>
+        </div>
+    </div>
+
+    <!-- Modal بۆ مەزنکرنا وێنان -->
+    <div id="dbImageModal" class="db-modal">
+        <span class="db-modal-close" id="dbModalClose">&times;</span>
+        <img class="db-modal-content" id="dbModalImg" src="">
+    </div>
+
+    <script>
+        // سیستەمێ پاراستنا پرۆمپتان دوور ژ کۆدێ HTML
+        const dbPrompts = {
+            base: "Retouch the face to make the skin perfectly smooth and clear while strictly maintaining the original natural look, facial features, and original lighting. The image must look completely natural and unedited.",
+            
+            trend_1: "استخدم الصورتين المرفقتين كمرجع حصري لهوية الشخصين، وحافظ على ملامح كل شخص الأصلية بدقة عالية جدًا دون تغيير أو تجميل. أنشئ صورة فوتوغرافية واقعية جدًا لشخصين متقاربين جدًا، بنفس فكرة الصورة المرجعية التالية: الشخصان يرتديان لثامًا صوفيًا أسود بالكامل يغطي الرأس والأنف والفم ومعظم الوجه، ولا يظهر سوى منطقة العينين من خلال فتحة أفقية ضيقة. اللثام محبوك وواقعي، أسود داكن، بنفس الشكل التقليدي لل balaclava، مع فتحة العينين فقط الشخص الأول يكون على اليسار، والشخص الثاني على اليمين، والوجهان قريبان جدًا من بعضهما. الشخص الأول يرفع يده ويمسك طرف اللثام بالقرب من وجهه بنفس الوضعية. كلاهما ينظران مباشرة نحو الكاميرا بنظرة هادئة وغامضة. اجعل التكوين قريبًا جدًا من صورة بورتريه عمودية: لقطة قريبة جدًا، الشخصان يملان معظم الإطار، خلفية سوداء مظلمة، إضاءة خافتة جدًا على العينين والوجه، ظلال عميقة، أجواء غامضة وسينمائية، تفاصيل واقعية جدًا في العينين والجلد ونسيج اللثام. حافظ على الهوية الأصلية لكل شخص من الصور المرفقة: شكل العينين، الحاجبين, لون البشرة، الشعر الظاهر، ونسب الوجه, بدون تغيير ملامح الوجه. Ultra-realistic photography, natural skin texture, realistic knitted black fabric, cinematic low-key lighting, deep shadows, subtle highlights, authentic proportions, extremely detailed eyes, dark mysterious atmosphere. 9:16 vertical. No text, no watermark, no logos, no extra people, no accessories, no facial alteration, no beauty filter.",
+            trend_2: "Hyper-realistic cinematic. Create an 8K closeup portrait of a handsome young man with medium-length, brown, slightly wind-swept hair falling naturally across his face. His striking, light-colored eyes gaze upwards and to the right, catching a sharp, diagonal beam of natural light that illuminates the high points of his cheekbone, nose, and smooth fair skin. His lips have a subtle natural gloss, and he is wearing a lightweight white silk shirt.The rest of his face and the background are cast in deep, dramatic shadow (chiaroscuro), emphasizing the striking interplay of light and darkness. Subtle textures and folds of the white silk clothing are visible around his shoulder and neckline. The image should capture a mysterious, introspective, and sophisticated mood, with incredible detail in his skin texture, individual hair strands, eyelashes, and the subtle reflections in his eyes and lips.Ultra-photorealistic skin, natural masculine facial features, cinematic lighting, dramatic chiaroscuro, shallow depth of field, soft atmospheric background, realistic shadows, high dynamic range, professional editorial photography, 85mm portrait lens, f/1.4, extremely detailed, photorealistic 8K quality. Make the photo in size 9.16",
+            trend_3: "Create a photorealistic vertical 9:16 cinematic black-and-white photograph. Use the uploaded reference image as the ONLY identity, visual, and composition reference. Preserve the person’s exact natural facial features, face shape, skin texture, hairstyle, hair volume, body proportions, and identity. Do not beautify, reshape, or alter the face. Recreate the same composition and perspective: the person is sitting casually in the driver’s seat of a luxurious dark car with the driver-side door open, arms crossed, legs positioned naturally, head turned slightly to the side, wearing a dark puffer jacket, dark sunglasses, loose white pants, and a watch. Keep the car interior realistic with light-colored leather, steering wheel, dashboard, and natural details. Change the environment to a mysterious, isolated elevated location at night. The car is parked on a high viewpoint overlooking a dark landscape. In the distance, show only a few scattered houses and very limited warm lights, with large areas of darkness between them. No dense city, no skyscrapers, no crowded streets. The location should feel remote, quiet, mysterious, and cinematic, as if the car is parked high above a small settlement. Strong cinematic black-and-white photography, deep blacks, bright highlights, realistic shadows, subtle film grain, natural night lighting, realistic reflections on the car body and windows, atmospheric haze, shallow depth of field, premium editorial street-photography aesthetic, ultra-realistic skin and fabric texture, realistic proportions, sharp focus on the subject. Keep the same mood, lighting, camera angle, framing, perspective, car position, open door, body position, crossed arms, leg position, head direction, hairstyle, sunglasses, clothing proportions, and overall composition as the reference. No text, no watermark, no logo, no extra people, no city skyline, no dense buildings, no facial changes, no distortion. Aspect ratio: 9:16 vertical. Ultra-realistic, high detail, 4K photographic quality.",
+            trend_4: "Сохрани лицо без изменений и искажений. Черно-белая кинематографичная фотография пары, снятая крупным планом. Парень и девушка сидят рядом, слегка повернувшись друг к другу. Девушка находится слева в кадре в переднем плане, повернута в профиль и смеется, не глядя на парня. Парень справа на заднем фоне смотрит на глаза девушки задумчиво,и влюбленно. Между ними чувствуется тепло, близость и романтическое настроение. Освещение мягкое, приглушенное, как в вечернем кафе или баре. Свет падает сбоку, создавая мягкие тени на лицах и подчеркивая черты лица. Фон размытый, темный, без четких деталей, создающий атмосферу уюта и интимности,без бликов. Фотография выполнена в стиле аналоговой пленки: - винтажное настроение — ощущение спонтанного, живого момента Одежда повседневная, стильная: — у парня простая куртка или жакет — у девушки топ или платье Ничего гламурного, натуральный стиль. Эмоции естественные, не позированные. Лица заменены на лица пользователя и её парня, с сохранением реалистичных пропорций, мимики и естественной кожи. Фотография выглядит как кадр из романтического фильма или личный момент, пойманный камерой. Фотореализм, высокая детализация, натуральная кожа, видимые поры, без искажений лица, без пластиковой текстуры. وحجم الصوره 9.16",
+            trend_5: "Не меняя внешности женщины с фото, перед нами крупный план её лица, частично скрытого под чёрной шапкой-бини, капюшоном и чёрной курткой с высоким воротом, которые обнимают нижнюю часть лица, оставляя видимыми только выразительные глаза. Очень близкое селфи на iPhone 16, горизонтальный кадр, видно только глаза и брови, взгляд направлен прямо в камеру. Фото черно-белое, сильно затемненное, с глубокими тенями и мягким контрастом. Веки полуприкрыты, создавая томный, тяжёлый, дерзкий взгляд. Стрелки большие, острые, дерзкие, с четкими графичными линиями. Ресницы длинные, пушистые. Брови строго очерчены и подчеркнуты тёмным оттенком. Взгляд направлен прямо в камеру, создавая атмосферу загадочности и напряженности. Свет падает мягко и равномерно, делая акцент на глубине взгляда. Волосы, видимые лишь частично, слегка выбиваются из-под шапки. Фон искажённо тёмный, монохромный. Стиль кадра кинематографичный, с высокой контрастностью и глубиной теней. Фотореалистичное изображение, высокая текстурная детализация, разрешение 8К. Формат 9:16. Фото снято наiPhone 16.Формат 9:16.copy my face 100%",
+            trend_6: "Create an ultra-realistic vertical 4:5 cinematic nighttime 3-frame photo collage using my uploaded photo as the ONLY identity reference. Preserve my face exactly-facial structure, eyes, eyebrows, nose, lips, jawline, cheekbones, skin tone, hair, hairline, facial hair, age and natural features. Do not beautify, reshape, slim, or alter my identity. Recreate the same person in all three frames, wearing a plain off-white/cream oversized sweatshirt. Set the scene outdoors at night in a dark open parking/terrace area with distant streetlights and subtle reflections on wet ground. Frame 1: chest-up portrait, head tilted slightly back and to the side, looking toward the camera with a subtle confident expression. Frame 2: medium portrait, head slightly tilted, looking directly at camera with a soft natural smile. Create an ultra-realistic black-and-white romantic mirror selfie using the uploaded reference images as the exclusive identity and composition reference. A young couple sits very close together inside a car, captured in a tight vertical 9:16 close-up. The man is on the left, his face naturally cropped, showing mainly his nose, lips, cheek, beard, and jawline, with his head tilted toward the woman. The woman is beside him, extremely close, with part of her face naturally hidden behind a large modern smartphone held vertically in front of the mirror. One eye, eyebrow, forehead, and cheek remain visible. Her hand and fingers must be anatomically correct, with realistic skin and an elegant sparkling ring. Keep the same composition, framing, camera angle, pose, smartphone placement, mirror frame, and visual balance as the reference. Show a subtle blurred street/car background with realistic reflections. Preserve both identities exactly: facial structure, proportions, eyes, eyebrows, nose, lips, jawline, cheekbones, hairstyle, hairline, beard, age, skin texture, and natural characteristics. No beautification, slimming, facial changes, excessive skin smoothing, or identity alteration. Style: ultra-photorealistic modern iPhone photography, black-and-white monochrome, soft grayscale, natural skin pores, realistic hair/beard/eyelashes, subtle cinematic contrast, ambient daylight, natural shadows and highlights, realistic depth of field, subtle film grain, HDR without overprocessing. Mood: quiet, intimate, romantic, candid, natural, and emotionally connected. Add only this Arabic text at the top in elegant handwritten calligraphy: “الروح انت، والنفس ❤️” No watermark, signature, extra people, extra fingers, distorted hands/phone, duplicated objects, facial deformation, plastic skin, excessive HDR, cartoon, illustration, painting, or 3D effect.",
+            trend_7: "Hyper-realistic cinematic studio portrait of a well-groomed man wearing a plain matte-black crewneck sweatshirt. Tight chest-up composition, centered, with the face occupying about half the frame. Shoulders slightly angled; head turned only 15-20° to one side while the face remains mostly visible, eyes looking off-camera in the same direction. Calm, serious, self-assured expression. Naturally styled hair with natural texture and individual defined strands, well groomed appearance. Lighting: soft warm-neutral key light from slightly above and front to preserve natural skin tones and sculpt the face; strong golden-orange rim/kicker from behind on camera-left, outlining the hair, ear, cheek and shoulder; subtle deep teal-green rim light from behind on camera-right, visible mainly along the hair, temple, jaw and neck. Do not wash the entire face in orange or green - colored light should remain mostly on the edges. Pure seamless black background with deep blacks and strong subject separation. Natural skin pores, fine hair detail, sharp eyes, controlled highlights, deep dimensional shadows, cinematic contrast, no beauty smoothing or artificial HDR look. 85mm portrait lens, eye-level, shallow depth of field, professional editorial studio photography. Vertical 9.16",
+            trend_8: "Create a square 1:1 romantic cinematic collage, closely matching the exact visual composition and layout of the reference image. The image is a warm, intimate double-portrait composition featuring two young people partially hiding their faces behind soft fabric/blankets, with only their eyes and upper facial features prominently visible. TOP SECTION: A close-up of a young man’s face filling the upper half of the frame. His dark, slightly messy hair falls naturally across his forehead. Only his eyes, eyebrows, nose bridge, and part of his cheeks are clearly visible because the lower half of his face is covered by a dark soft blanket or fabric. His eyes look gently toward the camera with a deep, emotional, affectionate expression. Natural eyelashes, realistic skin texture, subtle facial imperfections, detailed brown eyes, soft warm highlights. BOTTOM SECTION: A young woman positioned in the lower half of the image, partially hidden behind a light beige/cream-colored blanket. Her dark hair frames her face, with soft bangs across her forehead. Only her large expressive eyes and upper face are clearly visible above the blanket. Her eyes look upward toward the young man with a tender, dreamy, loving expression. Extremely detailed eyelashes, realistic brown eyes with natural reflections, soft skin texture. COMPOSITION: The two faces are arranged as a vertically connected romantic collage, with the man’s face occupying the upper portion and the woman’s face occupying the lower portion. Their faces overlap visually through the blankets, creating the impression that they are very close to each other. The composition is tightly cropped, intimate, symmetrical-feeling, and visually balanced. No full bodies visible. COLOR & LIGHTING: Warm dark brown, caramel, muted beige and soft amber color palette. Low-key cinematic lighting with gentle warm highlights across the eyes and skin, deep soft shadows, subtle vignette, slightly faded vintage photography aesthetic. The image should feel nostalgic, romantic, intimate and dreamy. TEXT ELEMENTS: Add delicate handwritten romantic text in the upper-right area: “In your eyes, I found my forever” with tiny hand-drawn heart outlines beside it. In the center between the two faces, add elegant small white serif typography: “Two souls. One heartbeat. Endless love.” with a tiny outlined heart underneath. In the lower-left area, add a small piece of paper/card partially visible, containing delicate handwritten text: “Every time our eyes meet. the world” Decorate subtly with tiny dried flowers and delicate botanical elements around the corners. VISUAL STYLE: Highly realistic photographic appearance, soft film grain, subtle analog texture, dreamy romantic editorial photography, vintage love-story aesthetic, shallow depth of field, realistic fabric fibers, realistic skin pores, natural eye reflections, soft focus around the edges, carefully controlled shadows, delicate highlights, premium cinematic color grading. IMPORTANT: Preserve the exact visual hierarchy, cropping, positioning, facial proportions, blanket placement, text placement, decorative flowers, warm color palette, lighting direction, negative space, and overall mood of the reference. Do not redesign the composition. Do not make it look like a digital illustration, painting, anime, CGI, or AI artwork. Make it look like an authentic professionally photographed romantic editorial collage. Make the photo size 9.16",
+            trend_9: "Ultra-realistic cinematic black-and-white portrait of a young couple, using the two uploaded reference photos as the ONLY identity references. Preserve both identities exactly as shown in the reference images. Keep the man’s and woman’s original facial features, face shapes, eyes, eyebrows, noses, lips, hairstyles, skin texture and all recognizable details unchanged. No face mixing, no identity alteration, no beautification and no facial reconstruction. The MAN is positioned in the foreground, very close to the camera, occupying most of the center and right side of the frame. He faces the camera directly with a calm, serious and slightly mysterious expression. His face is the main focus of the image. The WOMAN is standing directly behind the man, slightly toward the left side, mostly hidden behind his head and shoulder. Only a SMALL PART of her should be visible — mainly one eye, a small portion of her eyebrow and a subtle part of her cheek and hair. Do NOT show her entire face. She should appear naturally peeking from behind his shoulder, creating an intimate and cinematic composition. Lighting: dramatic low-key studio lighting coming from one side, strong directional highlights, deep natural shadows, realistic shadow falloff, subtle film grain and rich black tones. Style: authentic professional black-and-white photography, dark cinematic atmosphere, realistic natural skin texture, high dynamic range, natural imperfections, shallow depth of field, soft background blur, 85mm portrait lens look, f/1.8, extremely detailed, photorealistic, sophisticated and intimate mood. Composition: vertical 9:16, tight close-up portrait, the man clearly dominant in the foreground, the woman mostly concealed behind him with only a SMALL PORTION of her face visible, natural overlapping of their heads and shoulders, dark minimal background. IMPORTANT: The woman must appear only partially — approximately 15–20% of her face visible. Her face should remain behind the man’s head/shoulder and should NOT be fully revealed. Preserve both identities exactly from the uploaded references. No face mixing, no identity change, no facial reconstruction, no exaggerated beauty, no skin smoothing, no makeup enhancement, no change to hair, no text, no logo, no watermark.",
+            trend_10: "Create an ultra-realistic vintage 1980s romantic photograph of me and my girlfriend together, using the two uploaded photos as the ONLY identity references. Preserve both faces exactly. Show us standing close together beside a classic 1980s car in an authentic Middle Eastern city. We look at each other with a genuine smile. Man wears vintage blazer, loose shirt, high-waisted jeans. Woman wears authentic late-1980s dress. Background: old Middle Eastern architecture, vintage shops, Arabic cinema signs, classic cars, warm dusty evening light, weathered Arabic music posters (Fairuz, George Wassouf, etc.). Photography: authentic 1980s 35mm Kodak-style film, warm faded colors, analog grain, vintage lens imperfections. Vertical 9:16, highly photorealistic.",
+            trend_11: "Using the first photo as the exact identity reference for person A and the second photo as the exact identity reference for person B, do not generate new or idealized faces — reproduce both real faces with zero alteration to bone structure, proportions, spacing between features, or asymmetries. Capture a real extreme macro close-up cropped tightly so only the visible side of each person's face fills the frame — one eye, one eyebrow, one side of the nose and lips from each — with no hands, arms, or fingers visible anywhere in the shot. The two faces are pressed directly together, cheek to cheek, filling the entire frame. These are two separate, real, physically distinct people in genuine contact, not a blended or morphed single face; the meeting line in the middle is simply where person A's actual skin touches person B's actual skin. Each person's expression must match their natural expression exactly as it appears in their own reference photo — do not invent, change, or add a smile or any expression not already present in the reference. Render hyper-realistic detail on both sides under one shared, consistent light source: visible skin pores, individual eyebrow hairs and lashes, natural lip texture, and a detailed iris with fine radial fibers and a catchlight for each person, matching in lighting direction and color temperature. Do not beautify, do not symmetrize, do not smooth skin texture beyond what is naturally present, do not slim or idealize either face. Style: hyperrealistic close-up photography, shot on an 85mm lens, shallow depth of field with both faces sharp, natural true-to-life color — not 3D, not illustration, not a digital composite or face-morph. Final output: vertical 3:4, ultra-detailed, authentic half-face close-up of two real people, cheek to cheek, hands out of frame — both faces must remain fully and exactly recognizable as the two specific people in the uploaded reference photos,with no beautification or identity drift.",
+            trend_12: "Use the attached photo as the identity reference. Create a cinematic studio portrait of the exact same person, keeping their face, facial features, age, skin tone, eye color, hair color and hairstyle identical to the photo. Do not change who they are. The person sits on the floor against a dark charcoal-grey seamless studio backdrop, one knee raised, arm resting on the knee and chin resting on the hand, gazing thoughtfully off to the side with a calm, soft expression. They wear a stylish casual outfit that matches their age and gender, in soft neutral colors (an oversized button-up shirt with rolled sleeves, relaxed pants or jeans, and clean white sneakers). Keep any hair accessories or glasses visible in the photo. Behind the person, a large ghostly black-and-white monochrome double-exposure of the same person's face in profile, softly faded into the dark background like a smoky vignette, with gentle glowing highlights. Soft diffused studio lighting, shallow depth of field, moody editorial portrait photography, ultra-detailed skin and hair texture, 85mm lens, vertical 3:4 composition, photorealistic, high resolution. No text, no watermark, no distorted face, no extra fingers.",
+            trend_13: "Use the attached photo as the identity reference. Create a full-body studio image of the exact same person standing next to a smaller 3D animated cartoon version of himself/herself (Pixar-style character). The real person is photorealistic, standing tall in a relaxed pose with a warm smile, one hand resting playfully on top of the cartoon character's head, the other hand in the pocket. Keep their face, facial features, age, skin tone, eye color, hair color and hairstyle identical to the photo. Do not change who they are. The cartoon version is a cute, stylized 3D Pixar-style character with the same hairstyle, hair color, eye color and outfit, with big expressive eyes, a smooth soft face, a slightly smaller child-like proportion and a gentle smirk, tilting his/her head upward toward the real person. Both wear exactly the same clothes as in the attached photo (same jacket, hoodie, jeans, sneakers). If the photo only shows the upper body, complete the outfit with matching relaxed jeans and clean white sneakers. Plain light grey seamless studio background, soft diffused studio lighting, subtle natural shadows on the floor, full-body vertical 3:4 composition, high resolution, sharp details, realistic fabric textures. No text, no watermark, no distorted face, no extra fingers.",
+            trend_14: "Use the attached photo as the identity reference. Transform it into a bold, high-end digital pop-art editorial illustration of every person visible in the photo, whether it is one person or a group. Keep each person's face, facial features, expression, age, skin tone, freckles, hairstyle, hair color, pose, clothing and any held objects (bags, accessories, products) identical to the photo. Do not change who they are, and do not add or remove anyone. Style: clean vector-like digital painting with crisp confident linework, flat-to-semi-flat cel shading, sharp color blocks, visible stylized brush and hair strands, subtle skin texture and glossy highlights, like a luxury fashion magazine illustration. Keep the original composition and framing, tightly cropped and close to the subject. Replace the background with a solid, saturated contrasting color that is the complementary opposite of the main background color in the photo (for example yellow becomes deep purple), flat with no gradient, so the colors pop strongly. Vivid saturated palette, high contrast, smooth edges, ultra-detailed, vertical 3:4 composition, high resolution. No watermark, no distorted faces, no extra fingers.",
+            trend_15: "Use the attached photo as the identity reference. Transform it into a high-quality semi-realistic 3D animated character portrait (Pixar / Disney-style) of every person visible in the photo, whether it is one person or a group. Keep each person's face shape, facial features, eye color, skin tone, hair color, hairstyle, glasses, jewelry, expression, clothing and head pose recognizable and faithful to the photo. Do not change who they are, and do not add or remove anyone. Style: polished 3D render with smooth soft skin and subtle blush, slightly enlarged expressive glossy eyes with detailed catchlights, individually defined silky hair strands with natural highlights, realistic fabric texture on clothing (knit, cotton, denim), soft cinematic studio lighting, gentle shadows, shallow depth of field. Stylized but elegant and attractive, like a feature-film animated character. Clean pure white seamless background, centered chest-up framing (or full group framing if there are several people), vertical 3:4 composition, ultra-detailed, sharp focus, high resolution. No text, no watermark, no distorted faces, no extra fingers.",
+            trend_16: "Use the attached photo as the identity reference. Recreate the exact same person or people (keep each face, facial features, age, skin tone, hair color, hairstyle and body proportions identical to the photo, do not change who they are, and do not add or remove anyone) in a cinematic, romantic, moody beach photograph. The subject(s) walk barefoot along the wet shoreline, relaxed and natural, smiling softly and looking at each other (or gently off to the side if alone), holding hands if there are two. They wear light, flowing, all-white outfits: a soft white linen shirt and trousers, and a flowing white boho maxi dress with delicate lace details. Hair moves gently in the sea breeze. Setting: a wide dark-sand beach with shallow water reflecting the figures, gentle foamy waves, dark volcanic rocks on the right, and dramatic green mountain cliffs half-covered in low drifting mist in the background, under a heavy overcast grey sky. Muted, desaturated cool color palette with soft teal-grey tones, white outfits as the brightest element, soft natural diffused light, shot on 50mm lens, full-body framing, shallow depth of field, natural film grain, editorial lifestyle photography, photorealistic, ultra-detailed, vertical 4:5 composition, high resolution. No text, no watermark, no distorted faces, no extra fingers.",
+            trend_17: "Use the attached photo as the identity reference. Create a cinematic black-and-white double-exposure portrait of the exact same person or people (keep each face, facial features, age, hairstyle, body proportions and clothing identical to the photo, do not change who they are, and do not add or remove anyone). Main layer: the subject(s) stand full-body on a pebble shoreline of a calm mountain lake, back to back with eyes gently closed and heads slightly tilted up, holding hands if there are two (or standing alone with eyes closed if there is one). They wear elegant dark outfits: a flowing long black dress and a black button-up shirt with black trousers and dark shoes. Double-exposure layer: above them, a very large, translucent, ghostly profile portrait of each person's face, eyes closed, serene expression, softly blended and fading into the cloudy sky and drifting mist, like a dreamy memory. Background: still reflective lake water, steep misty mountains fading into low clouds, overcast moody sky. Monochrome black and white only, soft film-like contrast, fine grain, smooth tonal gradients, soft diffused light, 50mm lens, shallow depth of field, fine-art editorial photography, photorealistic, ultra-detailed, vertical 4:5 composition, high resolution. No color, no text, no watermark, no distorted faces, no extra fingers.",
+            trend_18: "Use the attached photo as the identity reference. Transform it into a soft, romantic hand-drawn digital illustration of the exact same person or people (keep each face, facial features, age, skin tone, hair color, hairstyle, expression, pose and clothing identical to the photo, do not change who they are, and do not add or remove anyone). Style: elegant pencil line-art with visible fine sketch outlines, combined with soft watercolor and gouache-like coloring, gentle shading, warm natural skin tones, realistic hair strands and delicate fabric folds. Muted warm palette of cream, beige, soft brown and gentle pastel accents. Keep the original pose and closeness between the people (embracing, hands together, soft smiles), with a tender, loving mood. Decorations: a few tiny hand-drawn hearts and small dots floating around the subjects, loose pencil strokes and soft watercolor brush smudges fading out at the edges, like an unfinished sketch vignette. Background: plain warm off-white / cream paper texture, no scenery. Half-body framing, vertical 4:5 composition, ultra-detailed, high resolution. No text, no watermark, no distorted faces, no extra fingers.",
+            trend_19: "Use the attached photo as the identity reference. Recreate the exact same person or people (keep each face, facial features, age, skin tone, hair color, hairstyle and body proportions identical to the photo, do not change who they are, and do not add or remove anyone) in a bright, joyful, romantic low-angle portrait. Pose: the subject(s) stand close together, heads gently touching, big natural genuine smiles, looking at the camera. If there are two people, they raise their outer arms and join their hands above their heads to form a heart shape against the sky. If there is only one person, they form a heart shape with both hands above the head. Outfit: simple, clean, casual summer clothes in soft light colors (a plain white t-shirt and a pastel yellow short-sleeve top with matching shorts). Setting: shot from a low angle looking up, against a vivid blue sky with soft, wispy white clouds, no other objects in the frame. Bright natural daylight, soft sun, fresh and airy color palette, clean sharp focus, 35mm lens, lifestyle photography, photorealistic, ultra-detailed skin and hair texture, vertical 4:5 composition, high resolution. No text, no watermark, no distorted faces, no extra fingers.",
+            trend_20: "The photorealistic character from the reference image is sprinting at maximum speed, leaning forward with an ecstatic, joyful laugh. He is wearing the exact same real-world outfit as shown in the reference image. He reaches one hand toward a tiny 3D version of himself in a Pixar-style design. The miniature is a stylized CGI toy-like character with an exaggerated, comical expression of panic, frantically running ahead on tiny animated legs across a cartoon-style street. A busy city street is rendered entirely in a colorful, charming, highly detailed 3D CGlanimated style reminiscent of a Pixar movie. Stylized cartoon buildings with playful architecture, rounded animated cars, and cheerful cartoon pedestrians line the street. The environment features stylized CGI textures that contrast beautifully with the realistic human character. Dynamic action shot with a low-angle camera tracking the character at knee level, emphasizing speed and the dramatic difference in scale. Wide-angle lens. Shallow depth of field with razor-sharp focus on the photorealistic main character's face and the tiny stylized miniature running ahead. Motion blur affects the animated background elements, while bright daytime lighting realistically illuminates the human subject and enhances the vibrant CGI textures of the environment. A striking mixed-media visual style that combines live-action photorealism for the main human character with high-quality 3D CGI animation for the entire environment and the miniature character. The real person is seamlessly integrated into the cartoon world, similar to the hybrid visual effect seen in films like *Space Jam* or 'Who Framed Roger Rabbit?', but rendered with modern, high-end CGI. Maintain 100% faithful reproduction of the real person's facial features, bone structure, hairstyle, and the exact joyful laughing expression from the provided reference photograph. The miniature 3D character must be a stylized CGI caricature that is instantly recognizable as the exact same person. Output size: **1080×1350**.",
+            trend_21: "Use the attached photo as the identity reference. Create a cinematic, magical storybook-adventure image of the exact same person (keep the face, facial features, age, skin tone, hair color, hairstyle and body proportions identical to the photo, do not change who they are). The person is photorealistic and steps dynamically toward the camera out of a giant open illustrated comic book, with arms stretched out and hands resting on the edges of the pages, smiling with joy and confidence, low-angle wide shot with strong depth. Outfit: an explorer adventurer look: olive-green field jacket with rolled sleeves over a plain white t-shirt, khaki cargo pants, sturdy lace-up hiking boots, a leather backpack, and a brass compass hanging from the neck. The two pages of the giant book are filled with colorful, hand-inked vintage comic panels showing the same person as a cartoon hero in different adventures: exploring a mountain trail, scuba diving next to a friendly shark, floating as an astronaut near planets and a rocket, playing the piano, reading a book with a black-and-white cat, and holding a globe. Include speech bubbles and caption boxes with short encouraging phrases in English, and a comic title box at the top reading 'THEIR ADVENTURES'. Foreground: stacks of old hardcover books (titled Animals, Planets, Adventures, Science, Stories), scattered comic prints, a brass compass and a leather satchel on a warm wooden floor. Background: a glowing golden sunlit corridor with warm backlight, soft light rays and floating dust particles. Warm golden-hour cinematic lighting, rich saturated colors, shallow depth of field, ultra-detailed, photorealistic subject blended with illustrated comic world, vertical 3:4 composition, high resolution. No watermark, no distorted faces, no extra fingers.",
+            trend_22: "Use the attached photo as the identity reference. Create a professional portrait-photography collage in a clean grid layout with thin white borders, made of five different headshot/beauty portraits of the exact same person (keep her face, facial features, age, skin tone, eye color, hair color and hairstyle identical to the photo; do not change who she is). The layout is: one wide landscape frame at the top left, one tall vertical frame on the right, and three stacked frames on the left and bottom right, all separated by thin white lines. Frame 1 (color, top-left): she lies her head on her stacked hands on a glossy reflective black surface, looking straight into the camera, natural warm skin tones, soft warm light, dark background, her reflection visible below. Frame 2 (black and white, right, tall): looking over her bare shoulder toward the camera with a soft intense gaze, wearing hoop earrings and a dark sleeveless top, softly blurred background. Frame 3 (black and white, middle-left): one hand resting on top of her head, head slightly tilted, moody dramatic side lighting, dark background, dark top and hoop earrings. Frame 4 (black and white, bottom-left): leaning forward with her hand on her head, her face close to a mirror surface with partial reflection, dark blurred foreground. Frame 5 (black and white, bottom-right): hair partly covering one eye, hand resting on her shoulder, soft studio lighting, light grey background. Style: high-end editorial beauty photography, natural flawless but realistic skin texture, long wavy blonde hair with highlights, soft diffused studio lighting, rich tonal contrast in the black-and-white frames, shallow depth of field, 85mm lens, photorealistic, ultra-detailed, vertical 4:5 composition, high resolution. No text, no watermark, no distorted face, no extra fingers.",
+            trend_23: "Use the attached photo as the identity reference. Create a cinematic spring portrait of the exact same person (keep her face, facial features, age, skin tone, eye color, hair color and hairstyle identical to the photo; do not change who she is, and do not add or remove anyone). Pose and styling: she sits in the middle of a vast blooming poppy field, holding a large bouquet of freshly picked red poppies close to her chest with both hands, looking at the camera with a soft, warm, confident smile. She wears a flowing off-white boho dress with ruffled sleeves and a delicate pendant necklace, and her long wavy hair falls naturally over her shoulders. The wide skirt of the dress spreads around her on the ground, with a few poppy petals scattered on it. Setting and light: golden hour sunset, the sun low on the horizon behind her creating a glowing rim light around her hair and a warm orange haze across the field, endless red poppies softly blurred in the background and foreground. Style: warm saturated color palette of orange, red and cream, dreamy bokeh, shallow depth of field, 85mm lens, soft film-like glow, editorial lifestyle photography, photorealistic, ultra-detailed skin and hair texture, vertical 3:4 composition, high resolution. No text, no watermark, no distorted face, no extra fingers.",
+            trend_24: "Use the attached photo as the identity reference. Create a trendy low-angle fashion photograph of the exact same person (keep her face, facial features, age, skin tone, eye color, hair color and hairstyle identical to the photo; do not change who she is, and do not add or remove anyone). Pose and camera: extreme low-angle wide shot from near the floor looking up, one foot stepping toward the camera so a chunky black-and-white sneaker appears huge in the foreground with strong perspective distortion, her body stretching upward, head tilted slightly down toward the camera, relaxed arms, soft playful smile, long wavy hair. Outfit: a faded black graphic rock t-shirt worn loose and straight, fully covering the waist and stomach down to the hips (not cropped, not knotted, no midriff or belly visible, with a bold tiger graphic on the chest), baggy light-wash blue denim cargo jeans with large side pockets, and black-and-white chunky sneakers with white laces. Background: a large wall covered in a black-and-white manga / comic-book layout, with many hand-inked pencil-style portrait panels of the same person in different cute expressions (smiling, winking, hands on cheeks, tongue out, laughing, eyes closed), surrounded by halftone dots, speed lines, hearts, stars, lightning bolts and bold comic speech bubbles and burst shapes with short phrases like 'OMG!', 'WOW!', 'LOVE IT!', 'SO CUTE!', 'AMAZING!', 'ADORABLE!'. Clean white floor. Style: bright, even studio lighting, crisp sharp focus, high contrast, the real photographic subject in full color against the monochrome ink illustration wall, social-media editorial look, photorealistic subject blended with illustrated background, ultra-detailed, vertical 3:4 composition, high resolution. No watermark, no distorted face, no extra fingers.",
+            
+            preset_1: "CINEMATIC: Using the uploaded photo, apply cinematic movie-style lighting with dramatic contrast, soft rim light, and a subtle film look. Keep the face and identity exactly the same.",
+            preset_2: "GOLDENHOUR: Using the uploaded photo, make it look like it was taken at golden hour, with a warm sunset glow and soft golden light on the subject. Keep the face unchanged.",
+            preset_3: "DSLRLOOK: Using the uploaded photo, make it look like it was shot on a professional DSLR camera, with natural depth of field, a softly blurred background, and sharp focus on the subject.",
+            preset_4: "RAINDROPS: Using the uploaded photo, add a realistic rainy mood with falling raindrops, wet glossy surfaces, cool tones, and soft moody lighting. Keep the face and identity the same.",
+            preset_5: "DREAMY: Using the uploaded photo, give it a dreamy, magical atmosphere with soft glowing light, floating sparkles, gentle haze, and warm pastel tones. Keep the face the same.",
+            preset_6: "PORTRAITPRO: Using the uploaded photo, turn it into a professional studio portrait with clean studio lighting, a smooth neutral background, and a polished finish. Keep the face exactly the same.",
+            preset_7: "BACKGROUND: Using the uploaded photo, replace the background with [describe the scene], matching the lighting and perspective so it looks natural. Keep the subject unchanged.",
+            preset_8: "COLORGRADE: Using the uploaded photo, apply a rich cinematic color grade with deep warm shadows, balanced highlights, and a film-style palette. Do not change the face or composition.",
+            preset_9: "REAL: Using the uploaded photo, make the skin look natural and realistic with fine texture, no over-smoothing, and no plastic look. Keep the identity exactly the same.",
+            preset_10: "SHARPNESS: Using the uploaded photo, enhance the sharpness and detail of the subject, especially the eyes, hair, and clothing, without artifacts. Keep the face unchanged.",
+            preset_11: "BOKEH: Using the uploaded photo, add a beautiful bokeh effect with soft blurred light circles in the background and a sharp, clear subject. Keep the face unchanged.",
+            preset_12: "VINTAGE: Using the uploaded photo, give it a vintage retro film look with faded warm tones, light film grain, and soft contrast. Keep the face the same.",
+            preset_13: "FESTIVE: Using the uploaded photo, add warm celebration lights such as lanterns, string lights, and candles for a cozy festive mood. Keep the face and identity unchanged.",
+            preset_14: "NIGHTGLOW: Using the uploaded photo, turn it into a moody night scene with soft glowing light on the face, a dark blue background, and warm light sources. Keep the face the same.",
+            preset_15: "NATURE: Using the uploaded photo, place the subject in a lush outdoor setting with green grass, blooming flowers, and soft sunlight. Keep the face and identity the same.",
+            preset_16: "CLOUDSOFT: Using the uploaded photo, change the background to a soft dreamy sky with fluffy white clouds and gentle blue tones. Keep the subject unchanged.",
+            preset_17: "REMOVECLUTTER: Using the uploaded photo, remove distracting objects from the background and clean it up so the subject stands out. Keep everything else exactly the same.",
+            preset_18: "OUTFITSWAP: Using the uploaded photo, change the clothing to [describe the new style], making it look natural and well-fitted. Keep the face and pose unchanged.",
+            preset_19: "4KDETAIL: Using the uploaded photo, upscale it to a high-detail 4K finish with crisp textures, clear eyes, fine hair detail, and clean edges. Keep the identity exactly the same.",
+            preset_20: "KEEPFACE: Using the uploaded photo, apply only the edit I describe next, and preserve the face shape, eyes, nose, mouth, and expression exactly as in the original."
+        };
+
+        let basePromptText = dbPrompts.base;
+        let trendPromptText = "";
+        let isTrendMode = false;
+
+        function dbUpdatePrompt() {
+            let finalStr = "";
+            
+            if (isTrendMode) {
+                finalStr = trendPromptText;
+            } else {
+                finalStr = basePromptText;
+                if (document.getElementById('dbAnim').checked) finalStr += document.getElementById('dbAnim').value;
+                if (document.getElementById('dbRes8k').checked) finalStr += document.getElementById('dbRes8k').value;
+                if (document.getElementById('dbBw').checked) finalStr += document.getElementById('dbBw').value;
+                if (document.getElementById('dbColor').checked) finalStr += document.getElementById('dbColor').value;
+                if (document.getElementById('dbNatureCheckbox').checked) finalStr += document.getElementById('dbNatureCheckbox').value;
+                if (document.getElementById('dbSmooth').checked) finalStr += document.getElementById('dbSmooth').value;
+            }
+            
+            document.getElementById('dbFinalPrompt').value = finalStr;
+        }
+
+        window.addEventListener('DOMContentLoaded', (event) => {
+            // بەستنا هەموو دوگمەیێن پرۆمپتان ب جاڤاسکریپتی ڤە
+            document.querySelectorAll('.db-btn-preset').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault(); 
+                    
+                    document.querySelectorAll('.db-btn-preset').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const promptKey = this.getAttribute('data-prompt-key');
+                    
+                    if(this.classList.contains('db-trend-btn')){
+                        isTrendMode = true;
+                        trendPromptText = dbPrompts[promptKey];
+                    } else {
+                        isTrendMode = false;
+                        if(promptKey === 'base') {
+                            basePromptText = dbPrompts.base;
+                        } else {
+                            basePromptText = dbPrompts[promptKey];
+                        }
+                    }
+                    dbUpdatePrompt();
+                });
+            });
+
+            // رێگریکرن ل Submit یێ شۆپیفای
+            document.querySelectorAll('.db-container button').forEach(btn => {
+                btn.addEventListener('click', function(e){
+                    e.preventDefault();
+                });
+            });
+
+            // چاڤدێریکرنا گوهۆڕینان ل بەشێ ئێکێ (چک بۆکس)
+            document.querySelectorAll('.db-container input[type=checkbox]').forEach(el => {
+                el.addEventListener('change', function() {
+                    if(!isTrendMode) dbUpdatePrompt();
+                });
+            });
+
+            // سیستەمێ مەزنکرنا وێنان (Modal)
+            const modal = document.getElementById('dbImageModal');
+            const modalImg = document.getElementById('dbModalImg');
+            const closeModal = document.getElementById('dbModalClose');
+
+            document.querySelectorAll('.db-btn-preset img').forEach(img => {
+                img.addEventListener('click', function(e) {
+                    e.stopPropagation(); 
+                    modal.classList.add('show');
+                    modalImg.src = this.src;
+                });
+            });
+
+            closeModal.addEventListener('click', function() {
+                modal.classList.remove('show');
+            });
+
+            modal.addEventListener('click', function(e) {
+                if(e.target === modal) {
+                    modal.classList.remove('show');
+                }
+            });
+
+            // دوگمەیا کۆپیکرنێ
+            const copyBtn = document.getElementById('dbCopyBtn');
+            if (copyBtn) {
+                copyBtn.addEventListener('click', function() {
+                    dbUpdatePrompt();
+                    let textToCopy = document.getElementById('dbFinalPrompt').value;
+                    
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        alert('✅ پرومپت ب سه‌ركه‌فتيانه‌ هاته‌ كۆپيكرن!\n\nنوكه‌ دشێي كليكا دكمێ "بچه‌ دناف Gemini دا" بكه‌ي و ل وێرێ Paste بكه‌ي.');
+                    }).catch(err => {
+                        let textArea = document.getElementById('dbFinalPrompt');
+                        textArea.select();
+                        try {
+                            document.execCommand('copy');
+                            alert('✅ پرومپت ب سه‌ركه‌فتيانه‌ هاته‌ كۆپيكرن!\n\nنوكه‌ دشێي كليكا دكمێ "بچه‌ دناف Gemini دا" بكه‌ي و ل وێرێ Paste بكه‌ي.');
+                        } catch (err) {
+                            alert('⚠️ كۆپيكرن سه‌ركه‌فتي نه‌بوو، ژكه‌ره‌ما خو ب ده‌ستي كۆپي بكه‌.');
+                        }
+                    });
+                });
+            }
+
+            dbUpdatePrompt();
+        });
+        
+        setTimeout(dbUpdatePrompt, 500);
+    </script>
+</div>
